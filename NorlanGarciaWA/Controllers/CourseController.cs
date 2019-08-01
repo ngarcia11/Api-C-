@@ -37,11 +37,11 @@ namespace NorlanGarciaWA.Controllers
         }
         // GET: api/<controller>
         [HttpGet]
-        public async Task <ActionResult<IEnumerable<Course>>> GetCourses()
+        public async Task<ActionResult<IEnumerable<Course>>> GetCourses()
         {
-            return await  _context.Courses.ToListAsync();
+            return await _context.Courses.ToListAsync();
         }
-        [HttpGet ("{id}")]
+        [HttpGet("{id}")]
 
         public async Task<ActionResult<Course>> GetCourseById(int id)
         {
@@ -50,8 +50,8 @@ namespace NorlanGarciaWA.Controllers
             {
                 return NotFound();
             }
-                return course;
-            
+            return course;
+
         }
 
         [HttpPost]
@@ -62,7 +62,24 @@ namespace NorlanGarciaWA.Controllers
 
             return CreatedAtAction(nameof(GetCourseById), new { id = course.CourseId }, course);
         }
-    }
 
+        [HttpDelete ("{id}")]
+        public async Task<IActionResult> DeleteCourseById(int id)
+        {
+            var course = await _context.Courses.FindAsync(id);
+            if (course == null)
+            {
+                return NotFound();
+            }
+            _context.Courses.Remove(course);
+            await _context.SaveChangesAsync();
+            return NoContent();
+
+        }
+
+
+    }
 }
+
+
 
