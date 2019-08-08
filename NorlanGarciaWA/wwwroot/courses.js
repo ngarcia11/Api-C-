@@ -36,3 +36,46 @@ function getCourses() {
 
         })
 }
+
+function addCourse() {
+    const course = {
+        name: $("add-course-name").val(),
+        duration: $("add-course-dur").val(),
+        instructorName: $("add-course-inst").val(),
+        isActive: $("add-course-active").is(":checked"),
+    };
+
+    $.ajax(
+        {
+            type: "POST",
+            accepts: "application/json",
+            url: uri,
+            contentType: "application/json",
+            data: JSON.stringify(course),
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log("ERROR on Ajax POST. Error: " + errorThrown);
+            },
+            success: function (result) {
+                getCourses();
+                $("add-course-name").val("");
+                $("add-course-dur").val("");
+                $("add-course-inst").val("");
+            }
+
+})
+}
+
+function deleteCourse(id) {
+    .ajax(
+        {
+            url: uri + "/" + id,
+            type: "DELETE",
+            success: function (result) {
+                getCourses();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log("ERROR on Ajax DELETE. Error: " + errorThrown);
+            },
+          
+        })
+}
