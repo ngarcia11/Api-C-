@@ -12,11 +12,11 @@ namespace NorlanGarciaWA.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CourseController : Controller
+    public class CoursesController : Controller
     {
         private readonly CourseContext _context;
 
-        public CourseController(CourseContext context)
+        public CoursesController(CourseContext context)
         {
             _context = context;
             if (_context.Courses.Count() == 0)

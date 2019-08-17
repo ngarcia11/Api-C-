@@ -20,14 +20,14 @@
     margin-top: 12px;
 }
 
-.course-add > form {
-    width: inherit;
-}
+    .course-add > form {
+        width: inherit;
+    }
 
-.course-add input[type="text"] {
-    border-radius: 4px;
-    padding: 8px;
-}
+    .course-add input[type="text"] {
+        border-radius: 4px;
+        padding: 8px;
+    }
 
 .course-list {
     margin-top: 12px;
